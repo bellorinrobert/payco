@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Summary of namespace App\Http\Controllers
+ * Controllador que realiza las cuatro (4) operaciones
+ * básicas de la matematica
+ * 
+ * @author Robert Bellorin <bellorinrobert@gmail.com>
+ * @date 2024-09-25 17:20:56
+ * 
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -46,7 +54,7 @@ class SoapMathController extends BaseController
     }
 
     // Método para sumar dos números
-    public function add($a, $b)
+    public function add($a, $b): int
     {
         return $a + $b;
     }
@@ -72,3 +80,5 @@ class SoapMathController extends BaseController
         return $a / $b;
     }
 }
+
+
