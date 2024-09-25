@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SoapMathController;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +42,13 @@ Route::post('/billetera/consultar',[
     \App\Http\Controllers\Billetera\ConsultarBilleteraController::class
     , '__invoke']
 )->name('billetera.consultar');
+
+Route::post('/soap',[
+    SoapMathController::class
+    , 'handle'
+])->withoutMiddleware([
+    VerifyCsrfToken::class
+]);
+
+
+
