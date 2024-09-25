@@ -13,6 +13,7 @@ router.post('/cliente', async (req, res) => {
         const {documento, nombres, email, celular, a, b, opera } = req.body
         const mySoap = await getSoap(a, b, opera);
         res.json({
+            'success': true,
             'add': mySoap['SOAP-ENV:Envelope']['SOAP-ENV:Body'][0]['ns1:addResponse'][0]['return'][0]['_']
         })
 
