@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const getSoap = require('../utils')
+const {getSoap, getApi } = require('../utils')
 
 router.get('/', (req, res) => {
     res.json({
@@ -12,13 +12,15 @@ router.post('/cliente', async (req, res) => {
     try {
         const {documento, nombres, email, celular, a, b, opera } = req.body
         const mySoap = await getSoap(a, b, opera);
+        const myApi = await getApi(documento, nombres, email, celular)
         res.json({
             'success': true,
-            'add': mySoap['SOAP-ENV:Envelope']['SOAP-ENV:Body'][0]['ns1:addResponse'][0]['return'][0]['_']
+            'add': mySoap['SOAP-ENV:Envelope']['SOAP-ENV:Body'][0]['ns1:addResponse'][0]['return'][0]['_'],
+            'api': myApi
         })
 
     } catch (error) {
-        res.status(500).send(
+        res.status(500).json(
             'Error procesing data'
         )
     }
