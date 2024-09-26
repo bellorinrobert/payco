@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Client\CreateClientNoSoapController;
 use App\Http\Controllers\SoapMathController;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +26,6 @@ Route::get('/users',[
     , '__invoke']
 );
 
-Route::post('/client',[
-    \App\Http\Controllers\Client\CreateClientController::class
-    , '__invoke']
-)->name('client.create');
 
 Route::post('/billetera/cargar',[
     \App\Http\Controllers\Billetera\LoadBilleteraController::class
@@ -50,5 +48,14 @@ Route::post('/soap',[
     VerifyCsrfToken::class
 ]);
 
+Route::post('/soap/cliente',[
+    \App\Http\Controllers\Client\CreateClientController::class
+    , 'handle'
+])->withoutMiddleware([
+    VerifyCsrfToken::class
+]);
 
-
+Route::post('/cliente',[
+    CreateClientNoSoapController::class
+    , '__invoke']
+);

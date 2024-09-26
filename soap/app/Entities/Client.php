@@ -16,10 +16,7 @@ class Client {
      * @ORM\GeneratedValue 
      */
     private $id;
-    /**
-     * Summary of nombres
-     * @ORM\Column(type="string")
-     */
+    /** @ORM\Column(type="string",length=20,unique=true) */
     private $documento;
     /**
      * Summary of nombres

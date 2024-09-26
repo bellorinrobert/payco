@@ -75,7 +75,8 @@ class SoapMathController extends BaseController
     public function divide($a, $b)
     {
         if ($b == 0) {
-            throw new \Exception('Division by zero.');
+            // throw new \Exception('Division by zero.');
+            return 'Error division by zero.';
         }
         return $a / $b;
     }
