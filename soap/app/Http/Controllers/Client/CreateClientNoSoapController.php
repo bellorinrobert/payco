@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Entities\Client;
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Requests\Client\CreateClientRequest;
+use App\Repositories\ClientRepository;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Routing\Controller as BaseController;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
-class CreateClientNoSoapController extends BaseController
+
+class CreateClientNoSoapController extends Controller
 {
-    private $entityMI;
-    public function __construct(EntityManagerInterface $entityManagerInterface){
-        
-        $this->entityMI = $entityManagerInterface;
-        
+    protected $clienteRepository;
+    public function __construct( ClientRepository $clienteRepository){
+
+        $this->clienteRepository = $clienteRepository;
         
     }
     /**
@@ -26,48 +22,19 @@ class CreateClientNoSoapController extends BaseController
     public function __invoke(CreateClientRequest $request)
     {
         //
-        $documento = $request->input('documento');
+        // try {
+            $data = $request->toArray();
 
-        // $cliente = $this->entityMI->findOnBy([
-        //     'documento' => 1223
-        // ]);
+            $client = $this->clienteRepository->create($data);
 
-        // if ($cliente){
-        //     return response()->json([
-        //         'success' => false,
-        //         'cod_error' => 1,
-        //         'message' => "Documento ya en bdd",
-        //     ]);
+            return response()->json(data: [
+                'meta' => [
+                    'success' => true
+                    , 'errors' => []
+                ], 'data' =>  $client
+                
+            ], status: 201);
         // }
-
-        try {
-
-            
-            $cliente = new Client();
-            
-            $cliente->setDocumento($request->documento);
-            $cliente->setNombres($request->nombres);
-            $cliente->setCelular($request->celular);
-            $cliente->setEmail($request->email);
-    
-            $this->entityMI->persist($cliente);
-            $this->entityMI->flush();
-    
-            return response()->json([
-                'success' => true,
-                'cod_error' => '00',
-                'message' => 'Procesado',
-            ]);
-            
-
-        } catch(\Exception $exception){
-            return response()->json([
-                'success' => false,
-                'cod_error' => 1,
-                'message' => "No procesado",
-            ]);
-        }
-
-
+        
     }
 }

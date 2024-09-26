@@ -24,10 +24,10 @@ class CreateClientRequest extends FormRequest
     {
         return [
             //
-            'documento' => ['required'],
+            'documento' => ['required','min:5', 'max:15', 'unique:clients,documento'],
             'nombres' => ['required', 'min:5', 'max:100'],
-            'email' => ['required'],
-            'celular' => ['required'],
+            'email' => ['required','unique:clients,email'],
+            'celular' => ['required','unique:clients,celular'],
         ];
     }
 }

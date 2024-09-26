@@ -19,7 +19,7 @@ class CreateClientTest extends TestCase
      */
     public function test_create_validar(): void
     {
-        $response = $this->postJson('/client',[
+        $response = $this->postJson('/cliente',[
             'documento' => '15804415'
         ]
     );
@@ -30,7 +30,7 @@ class CreateClientTest extends TestCase
     {
         $this->seed();
 
-        $response = $this->postJson('/client',[
+        $response = $this->postJson('/cliente',[
             'documento' => '15804415'
             , 'nombres' => 'Robert Luis Bellorin Bueno'
             , 'email' => 'bellorinrobert@gmail.com'
@@ -38,7 +38,7 @@ class CreateClientTest extends TestCase
             ]
         );
         
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         
         $this->assertDatabaseHas('clients',[
             'documento' => '15804415'
