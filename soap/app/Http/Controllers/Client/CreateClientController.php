@@ -13,7 +13,7 @@ namespace App\Http\Controllers\Client;
 use App\Entities\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\CreateClientRequest;
-use Doctrine\ORM\EntityManagerInterface;
+
 
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Request;
@@ -21,10 +21,8 @@ use Illuminate\Http\Request;
 class CreateClientController extends Controller
 {
     private $entityMI;
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(){
         
-        $this->entityMI = $entityManager;
-
         $this->middleware(VerifyCsrfToken::class)
                 ->except('handle');
 

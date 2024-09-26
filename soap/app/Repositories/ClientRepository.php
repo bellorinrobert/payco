@@ -56,5 +56,10 @@ class ClientRepository implements RepositoryInterface {
         return false;
     }
 
+    public function getBy($data) {
+        return Client::where($data['operator'],$data['value'])
+        ->first();
+    }
+
 
 }

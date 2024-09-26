@@ -5,16 +5,16 @@ namespace App\Http\Controllers\User;
 use App\Entities\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
-use Doctrine\ORM\EntityManagerInterface;
+
 use Illuminate\Http\Request;
 
 
 class IndexUserController extends Controller
 {
     private $entityManager;
-    public function __construct(EntityManagerInterface $entityManagerInterface){
+    public function __construct(){
 
-        $this->entityManager = $entityManagerInterface;
+        
 
     }
     /**

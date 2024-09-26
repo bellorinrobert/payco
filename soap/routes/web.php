@@ -1,7 +1,6 @@
 <?php
 
 
-use App\Http\Controllers\Client\CreateClientNoSoapController;
 use App\Http\Controllers\SoapMathController;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +55,11 @@ Route::post('/soap/cliente',[
 ]);
 
 Route::post('/cliente',[
-    CreateClientNoSoapController::class
+    \App\Http\Controllers\Client\CreateClientNoSoapController::class
     , '__invoke']
 );
+Route::post('/wallet/credit',[
+    \App\Http\Controllers\Billetera\LoadBilleteraController::class
+    , '__invoke']
+);
+
