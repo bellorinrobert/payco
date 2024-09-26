@@ -58,8 +58,26 @@ Route::post('/cliente',[
     \App\Http\Controllers\Client\CreateClientNoSoapController::class
     , '__invoke']
 );
+
 Route::post('/wallet/credit',[
     \App\Http\Controllers\Billetera\LoadBilleteraController::class
     , '__invoke']
 );
+
+Route::post('/wallet/debit',[
+    \App\Http\Controllers\Billetera\SolicitarPagoBilleteraController::class
+    , '__invoke']
+);
+
+Route::post('/wallet/confirm',[
+    \App\Http\Controllers\Billetera\PagarBilleteraController::class
+    , '__invoke']
+);
+
+Route::post('/wallet/consult',[
+    \App\Http\Controllers\Billetera\ConsultarBilleteraController::class
+    , '__invoke']
+);
+
+
 

@@ -29,7 +29,7 @@ class CreditTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-
+        // dd(\App\Models\Wallet::first());
         $this->assertDatabaseCount('wallets', 1);
         $this->assertDatabaseCount('transactions', 1);
     }

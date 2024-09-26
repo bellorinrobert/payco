@@ -66,6 +66,7 @@ class LoadBilleteraController extends Controller
 
         return response()->json([
             'success' => true
+            , 'cod_error' => null
             , 'message' => "Carga realizada con exito"
         ]);
 

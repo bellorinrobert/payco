@@ -14,6 +14,9 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'cliente',
-        'transaccion/credit',
+        'wallet/credit',
+        'wallet/debit',
+        'wallet/confirm',
+        'wallet/consult',
     ];
 }
