@@ -20,26 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users',[
-    \App\Http\Controllers\User\IndexUserController::class
-    , '__invoke']
-);
-
-
-Route::post('/billetera/cargar',[
-    \App\Http\Controllers\Billetera\LoadBilleteraController::class
-    , '__invoke']
-)->name('billetera.cargar');
-
-Route::post('/billetera/pagar',[
-    \App\Http\Controllers\Billetera\PagarBilleteraController::class
-    , '__invoke']
-)->name('billetera.pagar');
-Route::post('/billetera/consultar',[
-    \App\Http\Controllers\Billetera\ConsultarBilleteraController::class
-    , '__invoke']
-)->name('billetera.consultar');
-
 Route::post('/soap',[
     SoapMathController::class
     , 'handle'

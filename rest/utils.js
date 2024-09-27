@@ -70,36 +70,29 @@ async function  getSoap(a, b){
 
 }
 
-async function getApi(documento, nombres, email, celular){
-    const url = 'http://localhost:8000/cliente';
-    const bodyRequest = {
-        documento: documento,
-        nombres: nombres,
-        email: email,
-        celular: celular
-    }
+async function getApi(body, url){
+    
     try {
         
         const response = await fetch(url, {
                 method: 'POST',
                 headers: {
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',  // Indicar que estamos enviando JSON
                 },
-                body: JSON.stringify(bodyRequest)
+                body: JSON.stringify(body)
             })
-
-        
 
         const data = await response.json();
         
         return data
 
     } catch (error) {
-        console.error("error")
+        console.error("error", error)
         return error
     }
 }
-getApi()
+
 module.exports = {
     getSoap
     , getApi
